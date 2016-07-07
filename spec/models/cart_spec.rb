@@ -15,13 +15,16 @@ RSpec.describe Cart, type: :model do
       5.times do
         cart.add_item(1)
       end
-      3.times do
+      2.times do
+        cart.add_item(3)
+      end
+      8.times do
         cart.add_item(2)
       end
 
-      expect(cart.items.count).to be 2
+      expect(cart.items.count).to be 3
       expect(cart.items.first.quantity).to be 5
-      expect(cart.items.last.quantity).to be 3
+      expect(cart.items.last.quantity).to be 8
     end
   end
 end
