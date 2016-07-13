@@ -36,5 +36,19 @@ RSpec.describe Cart, type: :model do
       expect(cart.items.first.product).to be_a Product
       expect(cart.items.last.product).to be_a Product
     end
+
+    it "Cart 計算總價" do
+      cart = Cart.new
+      p1 = Product.create(price:50)
+      p2 = Product.create(price:100)
+
+      cart.add_item(p1.id)
+      cart.add_item(p1.id)
+      cart.add_item(p2.id)
+      cart.add_item(p1.id)
+      cart.add_item(p2.id)
+
+      expect(cart.total_price).to be 350
+    end
   end
 end
