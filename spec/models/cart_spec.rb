@@ -67,6 +67,9 @@ RSpec.describe Cart, type: :model do
     end
 
     it "反序列化" do
+      cart = Cart.build_from_hash(cart_hash)
+      expect(cart.items.first.product_id).to be 2
+      expect(cart.items.last.quantity).to be 4
     end
   end
 
