@@ -50,5 +50,34 @@ RSpec.describe Cart, type: :model do
 
       expect(cart.total_price).to be 350
     end
+
+    it "序列化" do
+      cart = Cart.new
+
+      cart.add_item(2)
+      cart.add_item(2)
+      cart.add_item(2)
+
+      cart.add_item(5)
+      cart.add_item(5)
+      cart.add_item(5)
+      cart.add_item(5)
+
+      expect(cart.serialize).to eq cart_hash
+    end
+
+    it "反序列化" do
+    end
+  end
+
+  private
+
+  def cart_hash
+    {
+      "items" => [
+        {"product_id" => 2, "quantity" => 3},
+        {"product_id" => 5, "quantity" => 4}
+      ]
+    }
   end
 end
