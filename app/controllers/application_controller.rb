@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   private
 
   def set_cart
-    @cart = Cart.new
+    @cart = Cart.build_from_hash(session["my_cart_session_123"])
   end
 end
