@@ -1,0 +1,8 @@
+<% unless cart.empty? %>
+<li>
+<%= link_to cart_path do %>
+  購物車
+  <span class="badge"><%= cart.items.count %></span>
+<% end %>
+</li>
+<% end %>

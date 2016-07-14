@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :cart, only: [:show, :destroy]
+
   root "products#index"
 end
