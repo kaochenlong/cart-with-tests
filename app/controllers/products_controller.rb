@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_product, only: [:show, :edit, :update, :destroy, :add_to_cart]
 
   def index
     @products = Product.all
@@ -8,20 +8,15 @@ class ProductsController < ApplicationController
   def show
   end
 
-  # GET /products/new
   def new
     @product = Product.new
   end
 
-  # GET /products/1/edit
   def edit
   end
 
-  # POST /products
-  # POST /products.json
   def create
     @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Product was successfully created.' }
@@ -33,8 +28,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1
-  # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -47,8 +40,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1
-  # DELETE /products/1.json
   def destroy
     @product.destroy
     respond_to do |format|
@@ -58,19 +49,19 @@ class ProductsController < ApplicationController
   end
 
   def add_to_cart
-    @cart.add_item(params[:id])
+    @cart.add_item(@product.id)
     session["my_cart_session_123"] = @cart.serialize
-    redirect_to products_path, notice: "感謝!"
+    redirect_to products_path, notice: "已將 #{@product.title}加至購物車!"
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:title, :description, :price)
-    end
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def product_params
+    params.require(:product).permit(:title, :description, :price)
+  end
 end
+

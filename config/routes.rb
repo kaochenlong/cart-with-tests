@@ -4,5 +4,6 @@ Rails.application.routes.draw do
       put :add_to_cart
     end
   end
-  root "pages#index"
+
+  root "products#index"
 end

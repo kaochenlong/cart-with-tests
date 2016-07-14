@@ -1,6 +1,9 @@
-<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+  <h1>你好!</h1>
+  <p>寶石鑑定商你一定賺很大!</p>
+</div>
 
-<h1>Products</h1>
+<h1>商品列表</h1>
 
 <table class="table">
   <thead>
@@ -21,7 +24,7 @@
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to '加', add_to_cart_product_path(product), method: :put %></td>
+        <td><%= link_to '加到購物車', add_to_cart_product_path(product), method: :put %></td>
       </tr>
     <% end %>
   </tbody>

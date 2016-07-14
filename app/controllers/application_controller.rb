@@ -9,3 +9,4 @@ class ApplicationController < ActionController::Base
     @cart = Cart.build_from_hash(session["my_cart_session_123"])
   end
 end
+
