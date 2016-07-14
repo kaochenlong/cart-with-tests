@@ -22,7 +22,7 @@ gem "simple_form"
 gem "devise"
 
 # paging
-gem "kaminari"
+gem 'kaminari', github: "amatsuda/kaminari"
 gem "bootstrap-kaminari-views"
 gem "slim"
 

@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy, :add_to_cart]
 
   def index
-    @products = Product.all
+    @products = Product.page(params[:page]).per(10)
   end
 
   def show
