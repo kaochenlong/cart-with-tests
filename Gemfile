@@ -24,6 +24,7 @@ gem "devise"
 # paging
 gem "kaminari"
 gem "bootstrap-kaminari-views"
+gem "slim"
 
 group :development, :test do
   gem 'byebug', platform: :mri

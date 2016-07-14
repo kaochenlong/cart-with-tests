@@ -1,0 +1,26 @@
+.panel.panel-default
+  .panel-heading
+    | 購物車
+  .panel-body
+    table.table.table-hover
+      thead
+        tr
+          th 商品
+          th 數量
+          th 單價
+          th 小計
+      tbody
+        - @cart.items.each do |item|
+          tr
+            td = item.product.title
+            td = item.quantity
+            td = item.product.price
+            td = item.total_price
+      tfoot
+        tr
+          td colspan=3 總價
+          td = @cart.total_price
+
+.btn-group
+  = link_to "繼續選購", products_path, class: "btn btn-default btn-lg"
+  = link_to "結帳", "#", class: "btn btn-danger btn-lg"
