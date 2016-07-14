@@ -29,6 +29,13 @@ gem "slim"
 group :development, :test do
   gem 'byebug', platform: :mri
   gem "rspec-rails"
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "faker"
+  gem "timecop"
+  gem "hirb-unicode"
 end
 
 group :development do
