@@ -1,1 +1,15 @@
-<%= render partial: "cart", locals: {cart: @cart} %>
+<%= render partial: "shared/cart_list", locals: {cart: @cart} %>
+
+<%= simple_form_for @order do |f| %>
+  <%= f.input :name %>
+  <%= f.input :tel %>
+  <%= f.input :address %>
+  <div class="btn-group">
+    <%= link_to '回上頁', :back, class:"btn btn-default btn-lg" %>
+    <%= f.submit class:"btn btn-danger btn-lg"%>
+  </div>
+<% end %>
+<br />
+<br />
+<br />
+
