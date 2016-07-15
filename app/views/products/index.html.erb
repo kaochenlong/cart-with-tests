@@ -11,7 +11,6 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th>
       <th>Price</th>
       <th colspan="4"></th>
     </tr>
@@ -21,12 +20,9 @@
     <% @products.each do |product| %>
       <tr>
         <td><%= product.title %></td>
-        <td><%= product.description %></td>
         <td><%= product.price %></td>
         <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to '加到購物車', add_to_cart_product_path(product), method: :put %></td>
+        <td><%= link_to '加到購物車', add_to_cart_product_path(product), method: :put, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>

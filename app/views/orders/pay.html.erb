@@ -1,0 +1,19 @@
+<form method="post" action="https://capi.pay2go.com/MPG/mpg_gateway" id="pay2go_form">
+  <input type="text" name="MerchantID"      value="32237946" />
+  <input type="text" name="RespondType"     value="JSON" />
+  <input type="text" name="CheckValue"      value="<%= @check_value %>" />
+  <input type="text" name="TimeStamp"       value="<%= Time.now.to_i %>" />
+  <input type="text" name="Version"         value="1.2" />
+  <input type="text" name="MerchantOrderNo" value="<%= @order.id %>" />
+  <input type="text" name="Amt"             value="<%= @order.amount %>" />
+  <input type="text" name="ItemDesc"        value="紅寶石購買" />
+  <input type="text" name="Email"           value="<%= current_user.email %>" />
+  <input type="text" name="LoginType"       value="0" />
+  <input type="text" name="TradeLimit"      value="<%= 10.minutes %>" />
+  <input type="text" name="ReturnURL"       value="<%= @returl_url %>" />
+  <input type="text" name="NotifyURL"       value="<%= @notify_url %>" />
+  <input type="text" name="EmailModify"     value="0" />
+  <input type="text" name="CREDIT"          value="1" />
+  <input type="text" name="VACC"            value="0" />
+  <input type="submit" />
+</form>

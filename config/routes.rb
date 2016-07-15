@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :orders, only: [:create]
+  resources :orders, only: [:create] do
+    member do
+      get :pay
+    end
+  end
 
   root "products#index"
 end

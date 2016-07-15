@@ -11,10 +11,17 @@ class OrdersController < ApplicationController
       session["my_cart_session_123"] = nil
 
       # 2. 轉往智付寶
-      redirect_to root_path
+      redirect_to pay_order_path(@order)
     else
       render "carts/checkout"
     end
+  end
+
+  def pay
+    hash_key = "uFcODjQdsQDPnxnTMIcPX5TpqON8Xk4r"
+    hash_iv = "ZhgCA7Q3XuTk2gdO"
+    @order = Order.find_by(id: params[:id])
+    redirect_to root_path unless @order
   end
 
   private
