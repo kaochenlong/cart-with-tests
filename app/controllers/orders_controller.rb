@@ -1,4 +1,9 @@
+require "digest"
+
 class OrdersController < ApplicationController
+
+  skip_before_action :verify_authenticity_token, only: [:finish]
+
   def create
     @order = Order.new(order_params)
 
@@ -18,10 +23,17 @@ class OrdersController < ApplicationController
   end
 
   def pay
-    hash_key = "uFcODjQdsQDPnxnTMIcPX5TpqON8Xk4r"
-    hash_iv = "ZhgCA7Q3XuTk2gdO"
     @order = Order.find_by(id: params[:id])
     redirect_to root_path unless @order
+
+    @merchant_id = "32237946"
+    @return_url = finish_orders_url
+    @notify_url = api_v1_pay2go_callback_url
+    @check_value = check_value(@order)
+  end
+
+  def finish
+    render text: "finish"
   end
 
   private
@@ -29,4 +41,19 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:name, :tel, :address)
   end
+
+  def check_value(order)
+    hash_key = "uFcODjQdsQDPnxnTMIcPX5TpqON8Xk4r"
+    hash_iv = "ZhgCA7Q3XuTk2gdO"
+    fields_string = {
+      Amt: order.amount,
+      MerchantID: @merchant_id,
+      MerchantOrderNo: order.id,
+      TimeStamp: order.created_at.to_i,
+      Version: "1.2"
+    }.sort.map { |k, v| "#{k}=#{v}" }.join("&")
+
+    Digest::SHA256.hexdigest("HashKey=#{hash_key}&#{fields_string}&HashIV=#{hash_iv}").upcase
+  end
+
 end
