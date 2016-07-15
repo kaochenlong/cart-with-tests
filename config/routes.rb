@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :products do
     member do
       put :add_to_cart
